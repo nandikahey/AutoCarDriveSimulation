@@ -24,7 +24,6 @@ import static org.carsim.util.ExceptionHandler.handleException;
  * </p>
  */
 public class Main {
-    private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -40,7 +39,7 @@ public class Main {
         }
         SimulationGrid simulationGrid = SimulationGridCreator.createCoordinateField(scanner, vehicleCount);
         try {
-            logger.info(simulationContext.executeEngine(simulationGrid));
+            System.out.println("\n" + simulationContext.executeEngine(simulationGrid));
         } catch (Exception e) {
             handleException(e);
 
