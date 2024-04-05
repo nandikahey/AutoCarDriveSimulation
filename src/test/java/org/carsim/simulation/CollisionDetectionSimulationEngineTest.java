@@ -68,5 +68,24 @@ class CollisionDetectionSimulationEngineTest {
         assertEquals(Constants.NO_COLLISIONS, result);
     }
 
+    @Test
+    void simulate_SimulationValidGridVehicleSimulationsWithEastAndWest_ReturnsNoCollisionString() {
+        Coordinate coordinate = new Coordinate(2, 2);
+        Car car = new Car("A", coordinate, Orientation.EAST);
+        String vehicleInstruction = "FFRFLF";
+        CarSimulation carSimulation = new CarSimulation(car, vehicleInstruction.toCharArray());
+
+        Coordinate coordinate2 = new Coordinate(2, 8);
+        Car car2 = new Car("B", coordinate2, Orientation.SOUTH);
+        String vehicleInstruction2 = "FFFRF";
+        CarSimulation carSimulation2 = new CarSimulation(car2, vehicleInstruction2.toCharArray());
+
+        SimulationGrid simulationGrid = new SimulationGrid(Arrays.asList(carSimulation, carSimulation2), WIDTH, HEIGHT);
+
+        String result = collisionDetectionSimulationEngine.simulate(simulationGrid);
+
+        assertEquals(Constants.NO_COLLISIONS, result);
+    }
+
 
 }
