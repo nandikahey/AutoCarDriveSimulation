@@ -28,14 +28,19 @@ public class InputPrompter {
         String simulationTypeInput;
         boolean isInputValid;
         do {
-            logger.log(Level.INFO, "Enter Simulation Type (Accepted Values: 1,2): ");
+            System.out.println("Enter Simulation Type [Accepted Values: 1 or 2 (for first part and second part)]:");
             simulationTypeInput = scanner.nextLine();
             isInputValid = inputValidator.validateSimulationType(simulationTypeInput);
             if (!isInputValid) {
-                logger.log(Level.SEVERE, "Invalid Input - Accepted Values: 1,2 ");
+                System.out.println("Invalid Input - Accepted Values: 1,2 ");
             }
         } while (!isInputValid);
-
+        int engineType = Integer.parseInt(simulationTypeInput);
+        if(engineType == Constants.NAVIGATION_SIMULATION) {
+            System.out.println("Navigation Simulation Engine Selected");
+        } else {
+            System.out.println("Collision Detection Simulation Engine Selected");
+        }
         return Integer.parseInt(simulationTypeInput);
     }
 
@@ -43,7 +48,6 @@ public class InputPrompter {
         String gridSizeInput;
         boolean isInputValid;
         do {
-            logger.log(Level.INFO, "Enter grid width and height (format: width height): ");
             gridSizeInput = scanner.nextLine();
             isInputValid = inputValidator.validateGridInput(gridSizeInput);
             if (!isInputValid) {
@@ -58,7 +62,6 @@ public class InputPrompter {
         String vehicleLocationOrientationInput;
         boolean isInputValid;
         do {
-            logger.log(Level.INFO, "Enter vehicle current position and direction (format: int int [NESW]): ");
             vehicleLocationOrientationInput = scanner.nextLine();
             isInputValid = inputValidator.validateCarPositionAndOrientation(vehicleLocationOrientationInput);
             if (!isInputValid) {
@@ -74,7 +77,6 @@ public class InputPrompter {
         String instruction;
         boolean isInputValid;
         do {
-            logger.log(Level.INFO, "Enter Instructions (format: LRF): ");
             instruction = scanner.nextLine();
             isInputValid = inputValidator.validateCommands(instruction);
             if (!isInputValid) {
@@ -89,7 +91,7 @@ public class InputPrompter {
         String vehicleCount;
         boolean isInputValid;
         do {
-            logger.log(Level.INFO, "Number of vehicles in simulation: ");
+            System.out.println("Number of vehicles in simulation: ");
             vehicleCount = scanner.nextLine();
             isInputValid = inputValidator.validateVehicleCount(vehicleCount);
             if (!isInputValid) {
@@ -104,7 +106,6 @@ public class InputPrompter {
         String vehicleName;
         boolean isInputValid;
         do {
-            logger.log(Level.INFO, "Enter Vehicle Name: ");
             vehicleName = scanner.nextLine();
             isInputValid = inputValidator.validateVehicleLabel(vehicleName);
             if (!isInputValid) {
