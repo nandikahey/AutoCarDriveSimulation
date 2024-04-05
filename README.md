@@ -108,14 +108,14 @@ To run this project run execute in root directory
 
 - Navigation Simulation
 
-![Image Alt text](TestingScreenshots/Part 1.png)
+![Image Alt text](TestingScreenshots/Part1.png)
 
 
 - Collision Detection Simulation
 
 ![Image Alt text](TestingScreenshots/Part2_Collision.png)
 
-![Image Alt text](TestingScreenshots/Part2_No Collision.png)
+![Image Alt text](TestingScreenshots/Part2_No_Collision.png)
 
 
 
