@@ -1,8 +1,11 @@
 package org.carsim.util.enums;
 
+import org.carsim.exceptions.UndefinedOrientationException;
+import org.carsim.util.Constants;
+
 public enum Orientation {
     NORTH("N"),
-    EAST("N"),
+    EAST("E"),
     SOUTH("S"),
     WEST("W");
 
@@ -18,7 +21,7 @@ public enum Orientation {
                 return e;
             }
         }
-        return null;
+        throw new UndefinedOrientationException(Constants.UNDEFINED_ORIENTATION);
     }
 
     @Override
