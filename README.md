@@ -112,9 +112,11 @@ Simulation Output:
 no collision
 ```
 
-### Tech Stack
+## Getting Started
 
-**Java 8**, **Maven 3.6** , **Junit5**
+### Dependencies and Technologies
+
+**Java 8**, **Maven 3.6** , **Junit 5**
 
 ### Compile
 
@@ -142,7 +144,7 @@ mvn package
 java -cp target/AutoCarDriveSimulation-1.0-SNAPSHOT.jar org.carsim.Main
 ```
 
-## Testing Screenshots
+## Execution Screenshots
 
 Following screenshots are obtained by executing the sample test cases given in the requirement document.
 
