@@ -20,6 +20,7 @@ public class CollisionDetectionSimulationEngine extends NavigationSimulationEngi
     private int time = 0;
     private int maxSimulationTime;
 
+
     /**
      * Simulates navigation and collision detection for vehicles on the simulation grid.<br><br>
      * <p>
@@ -44,6 +45,7 @@ public class CollisionDetectionSimulationEngine extends NavigationSimulationEngi
         if (optionalInt.isPresent()) {
             maxSimulationTime = optionalInt.getAsInt();
         }
+        CommandExecutor commandExecutor = new CommandExecutor(simulationGrid);
         // Set initial positions
         for (CarSimulation carSimulation : simulationGrid.getVehicleSimulations()) {
             vehicleLocationMap.put(carSimulation.getVehicle().getCarLabel(), carSimulation.getVehicle().getCoordinate());
@@ -53,7 +55,7 @@ public class CollisionDetectionSimulationEngine extends NavigationSimulationEngi
         while (time < maxSimulationTime && collisionList.isEmpty()) {
             for (CarSimulation carSimulation : simulationGrid.getVehicleSimulations()) {
                 if (time < carSimulation.getInstructionArray().length) {
-                    simulateNavigation(simulationGrid, carSimulation.getVehicle(), carSimulation.getInstructionArray()[time]);
+                    commandExecutor.executeCommand(carSimulation.getVehicle(), carSimulation.getInstructionArray()[time]);
                     vehicleLocationMap.put(carSimulation.getVehicle().getCarLabel(), carSimulation.getVehicle().getCoordinate());
                 }
             }

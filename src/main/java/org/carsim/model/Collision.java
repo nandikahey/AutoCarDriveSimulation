@@ -1,5 +1,9 @@
 package org.carsim.model;
 
+/**
+ * Represent a collision in the system.
+ * Hold collided vehicle names, collision location and command execution step number when collision occurred.
+ */
 public class Collision {
     private final String[] vehicleNames;
     private final Coordinate coordinate;
