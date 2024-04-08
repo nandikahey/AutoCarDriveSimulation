@@ -31,12 +31,13 @@ public class InputValidator {
      */
     public boolean validateCarPositionAndOrientation(String input) {
         if (input == null) return false;
-       return input.matches(Constants.VEHICLE_POS_ORIENTATION_INPUT_REGEX);
+        return input.matches(Constants.VEHICLE_POS_ORIENTATION_INPUT_REGEX);
     }
 
     /**
      * Validates a given vehicle is with in the bounds of the grid
-     * @param input user input string containing vehicle location
+     *
+     * @param input    user input string containing vehicle location
      * @param gridSize integer array contains grid width and height
      * @return given true if given vehicle location is within the bounds of the grid
      */

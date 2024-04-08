@@ -5,7 +5,7 @@ import org.carsim.util.enums.Orientation;
 import java.util.Objects;
 
 /**
- *
+ * The Car class represents a car in the simulation.
  */
 public class Car {
 
