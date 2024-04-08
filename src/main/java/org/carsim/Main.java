@@ -9,8 +9,8 @@ import org.carsim.util.InputPrompter;
 import org.carsim.util.InputValidator;
 import org.carsim.util.SimulationGridCreator;
 
+import java.io.PrintStream;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 import static org.carsim.util.ExceptionHandler.handleException;
 
@@ -39,11 +39,10 @@ public class Main {
         }
         SimulationGrid simulationGrid = SimulationGridCreator.createCoordinateField(scanner, vehicleCount);
         try {
-            System.out.println("\n" + simulationContext.executeEngine(simulationGrid));
+            new PrintStream(System.out).printf("Simulation Output: %n%s%n", simulationContext.executeEngine(simulationGrid));
         } catch (Exception e) {
             handleException(e);
-
         }
-        scanner.close();
+
     }
 }

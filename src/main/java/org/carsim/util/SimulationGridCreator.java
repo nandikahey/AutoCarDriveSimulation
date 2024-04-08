@@ -16,17 +16,19 @@ public class SimulationGridCreator {
     }
 
     public static SimulationGrid createCoordinateField(Scanner scanner, int vehicleCount) {
-        InputPrompter inputPrompter = new InputPrompter(new InputValidator());
+        InputValidator inputValidator = new InputValidator();
+        InputPrompter inputPrompter = new InputPrompter(inputValidator);
         int[] gridSize = inputPrompter.gridSizePrompt(scanner);
+
         List<CarSimulation> carSimulations = new ArrayList<>();
         for (int i = 0; i < vehicleCount; i++) {
             String vehicleName = null;
             if (vehicleCount > 1) {
-                vehicleName = inputPrompter.vehicleNamePrompt(scanner);
+                vehicleName = inputPrompter.vehicleNamePrompt(scanner, (i+1));
             }
-            String[] vehiclePositionOrientation = inputPrompter.vehicleLocationPrompt(scanner);
-            char[] vehicleInstruction = inputPrompter.instructionPrompt(scanner);
+            String[] vehiclePositionOrientation = inputPrompter.vehicleLocationPrompt(scanner, gridSize, (i+1));
             Coordinate vehiclePosition = new Coordinate(Integer.parseInt(vehiclePositionOrientation[0]), Integer.parseInt(vehiclePositionOrientation[1]));
+            char[] vehicleInstruction = inputPrompter.instructionPrompt(scanner, (i+1));
             Car car = new Car(vehicleName, vehiclePosition, Orientation.valueOfEnum(vehiclePositionOrientation[2]));
             CarSimulation carSimulation = new CarSimulation(car, vehicleInstruction);
             carSimulations.add(carSimulation);

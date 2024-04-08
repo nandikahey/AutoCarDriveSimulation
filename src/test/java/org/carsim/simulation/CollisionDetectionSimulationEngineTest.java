@@ -46,7 +46,7 @@ class CollisionDetectionSimulationEngineTest {
 
         String result = collisionDetectionSimulationEngine.simulate(simulationGrid);
 
-        assertEquals("A B" + "\n" + 5 + " " + 4 + "\n" + 7 + "\n", result);
+        assertEquals("A B" + "\n" + 5 + " " + 4 + "\n" + 7, result);
     }
 
     @Test

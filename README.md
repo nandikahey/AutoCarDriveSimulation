@@ -5,7 +5,7 @@ This Java project simulates the movement of auto-driving cars on a rectangular f
 
 It supports three main simulation commands
 - L: rotates the car by 90 degrees to the left
-- R: rotates the car by 90 degress to the right
+- R: rotates the car by 90 degrees to the right
 - F: moves forward by 1 grid point
 
 
@@ -14,58 +14,91 @@ It supports three main simulation commands
 In the application user will be prompted to select a simulation engine. 
 
 ```
-Enter Simulation Type [Accepted Values: 1 or 2 (for first part and second part)]:
-1 (or 2)
+Select Simulation Type, Accepted Values (1-Navigation Simulation. 2-Collision Detection Simulation)
+Enter Value: 
 ```
 
-If the user selects the collision simulation, they will be prompted to select the number of vehicles in the simulation.
+If the selection is successful application will provide a confirmation message as follows (According to the selected simulation engine)
 
 ```
-Number of vehicles in simulation:
-1
+Navigation Simulation Engine Selected
 ```
+
+```
+Collision Detection Simulation Engine Selected
+```
+
 Subsequent user inputs should adhere to the order and format specified in the following sections.
 
-## Part 1 - Navigation Simulation
+## Part 1 - Navigation Simulation Engine
 
 In this part, the simulation is performed for a single car on the field. The program takes input indicating the size of the simulation grid, the initial position and orientation (facing diretion) of the car, and a sequence of commands. The output 
 shows the final position and orientation of the car after simulating the commands.
 
+#### Sample Input
 
-Sample input
+User will be prompted to provide inputs to the application with instructions.
 
 ```
-10 10
-1 2 N
-FFRFFFRRLF
+Enter Grid Size [Format: int int]: 10 10
+Enter Vehicle 1 Position and Facing Direction [Format: int int (NESW)]: 1 2 N
+Enter Vehicle 1 Instructions [Allowed Characters: (RLF)]: FFRFFFRRLF
 ```
 
-Sample output
+#### Sample output
+
+Simulation engine will output following message, which is the final position of the vehicle.
+The message contains the final position and the orientation (facing direction) of the car.
+
 ```
+Simulation Output:
 4 3 S
 ```
 
-## Part 2 - Collision Detection
+## Part 2 - Collision Detection Simulation Engine
 
 In this part, multiple cars are deployed on the field simultaneously. The program takes input indicating the size of the field and sections for each car, including their initial positions, facing directions, and sequences of commands to execute. The output determines whether the cars collide with each other at any point during their movements.
 
-Sample input
+If the user selects the collision simulation, application will prompt to select the number of vehicles in the simulation.
 
 ```
-10 10
-A
-1 2 N
-FFRFFFFRRL
-B
-7 8 W
-FFLFFFFFFF
+Number of vehicles in simulation [Format: Integer Larger Than 1]: 2
 ```
 
-Sample output
+#### Sample input
+
+After selecting number of vehicles user will be prompted to input data such as simulation grid size and other simulation data for each vehicle. 
 ```
+Enter Grid Size [Format: int int]: 10 10
+Enter Vehicle 1 Name: A
+Enter Vehicle 1 Position and Facing Direction [Format: int int (NESW)]: 1 2 N
+Enter Vehicle 1 Instructions [Allowed Characters: ((R,L,F))]: FFRFFFFRRL
+Enter Vehicle 2 Name: B
+Enter Vehicle 2 Position and Facing Direction [Format: int int (NESW)]: 7 8 W
+Enter Vehicle 2 Instructions [Allowed Characters: ((R,L,F))]: FFLFFFFFFF
+```
+
+#### Sample output 
+
+The engine will detect whether there will be a collision or not by simulating each vehicle.
+
+Following is the output message format from the simulation engine when collision is detected.
+First line of the message contains space separated vehicle names that are collided. Second line is position information and
+the final line contains the step number in which the collision occurred.
+
+(For values in the sample input a collision is expected to occur in the simulation. )
+```
+Simulation Output:
 A B
 5 4
 7
+```
+
+If there is no collision in the simulation, the engine will provide following output.
+
+```
+Simulation Output:
+no collision
 ```
 
 
@@ -90,21 +123,17 @@ To run tests in this project execute in root directory
 
 ### Run as Jar
 
+To run this project as JAR executable run following commands in project's root directory.
+
 ```bash
 mvn package
 
 java -cp target/AutoCarDriveSimulation-1.0-SNAPSHOT.jar org.carsim.Main
 ```
 
-### Run as part of Build
+## Testing Screenshots
 
-To run this project run execute in root directory
-
-```bash
-  mvn exec:java -Dexec.mainClass="org.carsim.Main"
-```
-
-### Testing Screenshots
+Following screenshots are obtained by executing the sample test cases given in the requirement document.
 
 - Navigation Simulation
 
@@ -113,7 +142,11 @@ To run this project run execute in root directory
 
 - Collision Detection Simulation
 
+Below screenshot is captured when there is collision in the simulation at the 7th Step
+
 ![Image Alt text](TestingScreenshots/Part2_Collision.png)
+
+Below screenshot is captured when there is no collision detected.
 
 ![Image Alt text](TestingScreenshots/Part2_No_Collision.png)
 
