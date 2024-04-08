@@ -16,6 +16,6 @@ public class Collision {
      */
     @Override
     public String toString() {
-        return String.join(" ", vehicleNames) + "\n" + coordinate.getX() + " " + coordinate.getY() + "\n" + time + "\n";
+        return String.join(" ", vehicleNames) + "\n" + coordinate.getX() + " " + coordinate.getY() + "\n" + time;
     }
 }

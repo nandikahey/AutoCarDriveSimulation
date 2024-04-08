@@ -1,9 +1,14 @@
 package org.carsim.util;
 
+import org.carsim.model.Coordinate;
+
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 public class InputValidator {
     Logger logger = Logger.getLogger(getClass().getName());
+
+    Coordinate gridMaxCoordinate;
 
     /**
      * Validates user input for grid size
@@ -26,7 +31,18 @@ public class InputValidator {
      */
     public boolean validateCarPositionAndOrientation(String input) {
         if (input == null) return false;
-        return input.matches(Constants.VEHICLE_POS_ORIENTATION_INPUT_REGEX);
+       return input.matches(Constants.VEHICLE_POS_ORIENTATION_INPUT_REGEX);
+    }
+
+    /**
+     * Validates a given vehicle is with in the bounds of the grid
+     * @param input user input string containing vehicle location
+     * @param gridSize integer array contains grid width and height
+     * @return given true if given vehicle location is within the bounds of the grid
+     */
+    public boolean validateInitialVehiclePosition(String input, int[] gridSize) {
+        int[] vehicleLocation = Arrays.stream(input.split(" ")).limit(2).mapToInt(Integer::parseInt).toArray();
+        return vehicleLocation[0] < gridSize[0] && vehicleLocation[1] < gridSize[1];
     }
 
     /**

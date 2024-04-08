@@ -42,7 +42,7 @@ public class NavigationSimulationEngine implements SimulationEngine {
         switch (command) {
             case 'F':
                 if (simulationGrid.isWithInBounds(car.getCoordinate().getX(), car.getCoordinate().getY())) {
-                    moveForward(car);
+                    moveForward(car,simulationGrid.getWidth(), simulationGrid.getHeight());
                 }
                 break;
             case 'R':
@@ -63,19 +63,19 @@ public class NavigationSimulationEngine implements SimulationEngine {
      * @throws UndefinedOrientationException If the orientation of the car is undefined.
      */
 
-    public void moveForward(Car car) {
+    public void moveForward(Car car, int gridWidth, int gridHeight) {
         switch (car.getOrientation()) {
             case NORTH:
-                car.getCoordinate().setY(car.getCoordinate().getY() + 1);
+                car.getCoordinate().setY(Math.min(car.getCoordinate().getY() + 1, gridHeight-1));
                 break;
             case EAST:
-                car.getCoordinate().setX(car.getCoordinate().getX() + 1);
+                car.getCoordinate().setX(Math.min(car.getCoordinate().getX() + 1, gridWidth-1));
                 break;
             case SOUTH:
-                car.getCoordinate().setY(car.getCoordinate().getY() - 1);
+                car.getCoordinate().setY(Math.max(car.getCoordinate().getY() - 1, 0));
                 break;
             case WEST:
-                car.getCoordinate().setX(car.getCoordinate().getX() - 1);
+                car.getCoordinate().setX(Math.max(car.getCoordinate().getX() - 1,0));
                 break;
             default:
                 throw new UndefinedOrientationException(Constants.UNDEFINED_ORIENTATION);

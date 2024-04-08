@@ -1,9 +1,8 @@
 package org.carsim.util;
 
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**
@@ -16,8 +15,6 @@ import java.util.logging.Logger;
  * </p>
  */
 public class InputPrompter {
-
-    private final Logger logger = Logger.getLogger(getClass().getName());
     InputValidator inputValidator;
 
     public InputPrompter(InputValidator inputValidator) {
@@ -27,19 +24,20 @@ public class InputPrompter {
     public int simulationTypePrompt(Scanner scanner) {
         String simulationTypeInput;
         boolean isInputValid;
+        PrintStream out = new PrintStream(System.out);
         do {
-            System.out.println("Enter Simulation Type [Accepted Values: 1 or 2 (for first part and second part)]:");
+            out.printf("Select Simulation Type, Accepted Values (1-Navigation Simulation. 2-Collision Detection Simulation) %nEnter Value: ");
             simulationTypeInput = scanner.nextLine();
             isInputValid = inputValidator.validateSimulationType(simulationTypeInput);
             if (!isInputValid) {
-                System.out.println("Invalid Input - Accepted Values: 1,2 ");
+                out.println("Invalid Input - Accepted Values: 1,2 ");
             }
         } while (!isInputValid);
         int engineType = Integer.parseInt(simulationTypeInput);
-        if(engineType == Constants.NAVIGATION_SIMULATION) {
-            System.out.println("Navigation Simulation Engine Selected");
+        if (engineType == Constants.NAVIGATION_SIMULATION) {
+            out.println("Navigation Simulation Engine Selected\n");
         } else {
-            System.out.println("Collision Detection Simulation Engine Selected");
+            out.println("Collision Detection Simulation Engine Selected\n");
         }
         return Integer.parseInt(simulationTypeInput);
     }
@@ -48,39 +46,50 @@ public class InputPrompter {
         String gridSizeInput;
         boolean isInputValid;
         do {
+            PrintStream out = new PrintStream(System.out);
+            out.print("Enter Grid Size [Format: int int]: ");
             gridSizeInput = scanner.nextLine();
             isInputValid = inputValidator.validateGridInput(gridSizeInput);
             if (!isInputValid) {
-                logger.log(Level.SEVERE, "Invalid Input - Accepted Values: positive integers");
+                out.println("Invalid Input - Accepted Values: positive integers");
             }
         } while (!isInputValid);
 
         return Arrays.stream(gridSizeInput.split(" ")).mapToInt(Integer::parseInt).toArray();
     }
 
-    public String[] vehicleLocationPrompt(Scanner scanner) {
+    public String[] vehicleLocationPrompt(Scanner scanner, int[] gridSize, int vehicleIndex) {
         String vehicleLocationOrientationInput;
         boolean isInputValid;
+        boolean isLocationValid;
         do {
+            PrintStream out = new PrintStream(System.out);
+            out.printf("Enter Vehicle %s Position and Facing Direction [Format: int int (NESW)]: ", vehicleIndex);
             vehicleLocationOrientationInput = scanner.nextLine();
             isInputValid = inputValidator.validateCarPositionAndOrientation(vehicleLocationOrientationInput);
+            isLocationValid = inputValidator.validateInitialVehiclePosition(vehicleLocationOrientationInput, gridSize);
             if (!isInputValid) {
-                logger.log(Level.SEVERE, "Invalid Input - Accepted Values: int int [NESW]");
+                out.println("Invalid Input - Accepted Format: int int [NESW]");
             }
-        } while (!isInputValid);
+            if (!isLocationValid) {
+                out.println("Invalid Initial Location - Out of Grid");
+            }
+        } while (!isInputValid || !isLocationValid);
 
 
         return vehicleLocationOrientationInput.split(" ");
     }
 
-    public char[] instructionPrompt(Scanner scanner) {
+    public char[] instructionPrompt(Scanner scanner, int vehicleIndex) {
         String instruction;
         boolean isInputValid;
         do {
+            PrintStream out = new PrintStream(System.out);
+            out.printf("Enter Vehicle %s Instructions [Allowed Characters: (R,L,F)]: ", vehicleIndex);
             instruction = scanner.nextLine();
             isInputValid = inputValidator.validateCommands(instruction);
             if (!isInputValid) {
-                logger.log(Level.SEVERE, "Invalid Input - Accepted Values: LFR");
+                out.println("Invalid Input - Allowed Characters: R,L,F");
             }
         } while (!isInputValid);
 
@@ -91,25 +100,28 @@ public class InputPrompter {
         String vehicleCount;
         boolean isInputValid;
         do {
-            System.out.println("Number of vehicles in simulation: ");
+            PrintStream out = new PrintStream(System.out);
+            out.print("Number of vehicles in simulation [Format: Integer larger Than 1]: ");
             vehicleCount = scanner.nextLine();
             isInputValid = inputValidator.validateVehicleCount(vehicleCount);
             if (!isInputValid) {
-                logger.log(Level.SEVERE, "Invalid Input - Accepted Values: positive integers");
+                out.println("Invalid Input - Number of vehicles should be more than one to detect collisions");
             }
         } while (!isInputValid);
 
         return Integer.parseInt(vehicleCount);
     }
 
-    public String vehicleNamePrompt(Scanner scanner) {
+    public String vehicleNamePrompt(Scanner scanner, int vehicleIndex) {
         String vehicleName;
         boolean isInputValid;
         do {
+            PrintStream out = new PrintStream(System.out);
+            out.printf("Enter Vehicle %s Name: ", vehicleIndex);
             vehicleName = scanner.nextLine();
             isInputValid = inputValidator.validateVehicleLabel(vehicleName);
             if (!isInputValid) {
-                logger.log(Level.SEVERE, "Invalid Input - Accepted Values: English Letters without space");
+                out.println("Invalid Input - Accepted Values: English Letters without space");
             }
         } while (!isInputValid);
 

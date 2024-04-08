@@ -35,11 +35,26 @@ class InputValidatorTest {
             "1 -1 S, false",
             "1 1 X, false",
             "11 -1 S, false",
-            "11 10 N, true",
+            "9 10 N, true",
+            "9 9 N, true",
+            "4 5 N, true",
             "0 0 N, true"
     })
     void validateCarPositionAndOrientation_ParametrizedValues(String userInput, boolean expected) {
         boolean isValid = inputValidator.validateCarPositionAndOrientation(userInput);
+        Assertions.assertEquals(expected, isValid);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "10 9 N, false",
+            "10 10 N, false",
+            "9 9 N, true",
+            "0 0 N, true"
+    })
+    void validateInitialCarPosition_ParametrizedValues(String userInput, boolean expected) {
+        int[] gridSize = new int[]{10, 10};
+        boolean isValid = inputValidator.validateInitialVehiclePosition(userInput, gridSize);
         Assertions.assertEquals(expected, isValid);
     }
 
@@ -76,8 +91,9 @@ class InputValidatorTest {
             "A, false",
             "#, false",
             "30, true",
-            "1, true",
-            "2, true"
+            "1, false",
+            "2, true",
+            "11, true",
     })
     void validateVehicleCount_ParametrizedValues(String userInput, boolean expected) {
         boolean isValid = inputValidator.validateVehicleCount(userInput);
