@@ -20,8 +20,8 @@ public class SimulationGrid {
 
     public boolean isWithInBounds(int x, int y) {
         return x < width - 1 &&
-                x > 0 &&
+                x >= 0 &&
                 y < height - 1 &&
-                y > 0;
+                y >= 0;
     }
 }
