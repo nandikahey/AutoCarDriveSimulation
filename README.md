@@ -28,7 +28,7 @@ Navigation Simulation Engine Selected
 Collision Detection Simulation Engine Selected
 ```
 
-Subsequent user inputs should adhere to the order and format specified in the following sections.
+Subsequent user inputs adheres to the order and format specified in the following sections.
 
 ## Part 1 - Navigation Simulation Engine
 
