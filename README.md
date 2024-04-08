@@ -137,18 +137,18 @@ Following screenshots are obtained by executing the sample test cases given in t
 
 - Navigation Simulation
 
-![Image Alt text](TestingScreenshots/Part1.png)
+![Image Alt text](TestingScreenshots/Part_1.png)
 
 
 - Collision Detection Simulation
 
 Below screenshot is captured when there is collision in the simulation at the 7th Step
 
-![Image Alt text](TestingScreenshots/Part2_Collision.png)
+![Image Alt text](TestingScreenshots/Part_2_Collision.png)
 
 Below screenshot is captured when there is no collision detected.
 
-![Image Alt text](TestingScreenshots/Part2_No_Collision.png)
+![Image Alt text](TestingScreenshots/Part_2_No_Collision.png)
 
 
 
