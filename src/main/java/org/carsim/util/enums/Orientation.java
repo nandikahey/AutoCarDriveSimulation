@@ -3,6 +3,9 @@ package org.carsim.util.enums;
 import org.carsim.exceptions.UndefinedOrientationException;
 import org.carsim.util.Constants;
 
+/**
+ * Enum representing four main directions (North, East, South, West).
+ */
 public enum Orientation {
     NORTH("N"),
     EAST("E"),

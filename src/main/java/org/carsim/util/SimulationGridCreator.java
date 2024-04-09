@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Utility class for creating simulation grids.
+ */
 public class SimulationGridCreator {
 
     private SimulationGridCreator() {

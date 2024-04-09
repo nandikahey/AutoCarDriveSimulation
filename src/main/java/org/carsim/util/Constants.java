@@ -1,5 +1,8 @@
 package org.carsim.util;
 
+/**
+ * Holds constant values used for input validation and simulation.
+ */
 public final class Constants {
 
     public static final String ACCEPTED_COMMANDS = "FLR";
@@ -15,7 +18,6 @@ public final class Constants {
     public static final String COMMAND_NOT_SUPPORTED = "Command Not Supported";
     public static final int NAVIGATION_SIMULATION = 1;
     public static final int COLLISION_DETECTION_SIMULATION = 2;
-
 
     private Constants() {
     }

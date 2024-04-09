@@ -1,14 +1,11 @@
 package org.carsim.util;
 
-import org.carsim.model.Coordinate;
-
 import java.util.Arrays;
-import java.util.logging.Logger;
 
+/**
+ * Utility class for input validation.
+ */
 public class InputValidator {
-    Logger logger = Logger.getLogger(getClass().getName());
-
-    Coordinate gridMaxCoordinate;
 
     /**
      * Validates user input for grid size

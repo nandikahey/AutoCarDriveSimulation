@@ -11,8 +11,9 @@ import org.carsim.util.Constants;
  */
 public class MoveForwardCommand implements Command {
 
-    private final SimulationGrid simulationGrid;
     public static final Character COMMAND_CHAR = 'F';
+    private final SimulationGrid simulationGrid;
+
     public MoveForwardCommand(SimulationGrid simulationGrid) {
         this.simulationGrid = simulationGrid;
     }
