@@ -163,4 +163,9 @@ Below screenshot is captured when there is no collision detected.
 ![Image Alt text](TestingScreenshots/Part_2_No_Collision.png)
 
 
+## Assumptions
 
+The requirement's scope and boundaries is predicated upon several assumptions:
+
+- In instances where vehicles share identical starting positions, such an occurrence is regarded as a collision, therefore the subsequent steps have zero impact.
+- Upon the detection of the first collision, the simulation exits, and results are generated, without considering the potential possibility of further collisions.
