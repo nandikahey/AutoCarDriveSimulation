@@ -11,6 +11,7 @@ import org.carsim.util.enums.Orientation;
  */
 public class TurnRightCommand implements Command {
     public static final Character COMMAND_CHAR = 'R';
+
     @Override
     public void execute(Car car) {
         turnRight(car);

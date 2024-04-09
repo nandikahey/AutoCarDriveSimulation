@@ -61,22 +61,21 @@ public class InputPrompter {
     public String[] vehicleLocationPrompt(Scanner scanner, int[] gridSize, int vehicleIndex) {
         String vehicleLocationOrientationInput;
         boolean isInputValid;
-        boolean isLocationValid;
+        boolean isLocationValid = false;
         do {
             PrintStream out = new PrintStream(System.out);
-            out.printf("Enter Vehicle %s Position and Facing Direction [Format: int int (NESW)]: ", vehicleIndex);
+            out.printf("Enter Vehicle %s Position and Facing Direction [Format: int int (N,E,S,W)]: ", vehicleIndex);
             vehicleLocationOrientationInput = scanner.nextLine();
             isInputValid = inputValidator.validateCarPositionAndOrientation(vehicleLocationOrientationInput);
-            isLocationValid = inputValidator.validateInitialVehiclePosition(vehicleLocationOrientationInput, gridSize);
-            if (!isInputValid) {
-                out.println("Invalid Input - Accepted Format: int int [NESW]");
-            }
-            if (!isLocationValid) {
-                out.println("Invalid Initial Location - Out of Grid");
+            if (isInputValid) {
+                isLocationValid = inputValidator.validateInitialVehiclePosition(vehicleLocationOrientationInput, gridSize);
+                if (!isLocationValid) {
+                    out.println("Invalid Initial Location - Out of Grid");
+                }
+            } else {
+                out.println("Invalid Input - Accepted Format: int int [N,E,S,W]");
             }
         } while (!isInputValid || !isLocationValid);
-
-
         return vehicleLocationOrientationInput.split(" ");
     }
 
